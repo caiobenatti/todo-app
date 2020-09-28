@@ -10,7 +10,9 @@
 <ul>
     <li v-for="todo in todos" v-bind:key="todo.id">
         <!-- binds the key to the id on the addNewTodo function, and creates a loop to add a new h3/list item every time we add a new todo -->
-        <h3>{{ todo.content }}</h3>
+        <h3 :class="{ done: todo.done }" @click="toggleDone(todo)">
+            {{ todo.content }}
+        </h3>
     </li>
 </ul>
 </template>
@@ -28,14 +30,21 @@ export default {
         function addNewTodo() {
             todos.value.push({
                 id: Date.now(),
-                done: false;
-                content: newTodo.value;
-            })
+                done: false,
+                content: newTodo.value,
+            });
+            newTodo.value = "";
         }
+
+        function toggleDone(todo) {
+            todo.done = !todo.done;
+        }
+
         return {
             todos,
             newTodo,
             addNewTodo,
+            toggleDone,
         };
     },
 };
@@ -54,5 +63,24 @@ export default {
     font-size: 2em;
     width: 80%;
     margin: 0 auto;
+}
+
+input,
+textarea,
+button,
+p,
+div,
+section,
+article,
+select {
+    display: block;
+    width: 100%;
+    font-family: sans-serif;
+    font-size: 1em;
+    margin: 0.5em;
+}
+
+.done {
+    text-decoration: line-through;
 }
 </style>
