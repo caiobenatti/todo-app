@@ -8,6 +8,7 @@
     <button>Add new Todo</button>
 </form>
 <button @click="markAllDone">Mark All Done</button>
+<button @click="removeAllTodos">Remove all</button>
 <ul>
     <li v-for="(todo, index) in todos" v-bind:key="todo.id" class="todo">
         <!-- binds the key to the id on the addNewTodo function, and creates a loop to add a new h3/list item every time we add a new todo, then add the index as a way to remove the todo later -->
@@ -50,6 +51,10 @@ export default {
             todos.value.forEach((todo) => (todo.done = true));
         }
 
+        function removeAllTodos() {
+            todos.value = [];
+        }
+
         return {
             todos,
             newTodo,
@@ -57,6 +62,7 @@ export default {
             toggleDone,
             removeTodo,
             markAllDone,
+            removeAllTodos,
         };
     },
 };
