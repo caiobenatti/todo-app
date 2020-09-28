@@ -7,7 +7,12 @@
     <!-- v-model binds whats inside the box to the function setup -->
     <button>Add new Todo</button>
 </form>
-<h2>{{ newTodo }}</h2>
+<ul>
+    <li v-for="todo in todos" v-bind:key="todo.id">
+        <!-- binds the key to the id on the addNewTodo function, and creates a loop to add a new h3/list item every time we add a new todo -->
+        <h3>{{ todo.content }}</h3>
+    </li>
+</ul>
 </template>
 
 <script>
@@ -21,7 +26,11 @@ export default {
         const todos = ref([]); //creates an reactive array
 
         function addNewTodo() {
-            console.log(newTodo.value);
+            todos.value.push({
+                id: Date.now(),
+                done: false;
+                content: newTodo.value;
+            })
         }
         return {
             todos,
