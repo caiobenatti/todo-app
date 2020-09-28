@@ -1,14 +1,20 @@
 <template>
-<HelloWorld msg="To-Do App" />
+<h1>Todo App</h1>
+<form @submit.prevent="addNewTodo">
+    <!-- the .prevent prevents it from refreshing the page -->
+    <label> New Todo</label>
+    <input name="newTodo" />
+    <button>Add new Todo</button>
+</form>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
-
 export default {
-    name: "App",
-    components: {
-        HelloWorld,
+    setup() {
+        function addNewTodo() {}
+        return {
+            addNewTodo,
+        };
     },
 };
 </script>
