@@ -8,11 +8,12 @@
     <button>Add new Todo</button>
 </form>
 <ul>
-    <li v-for="todo in todos" v-bind:key="todo.id">
+    <li v-for="todo in todos" v-bind:key="todo.id" class="todo">
         <!-- binds the key to the id on the addNewTodo function, and creates a loop to add a new h3/list item every time we add a new todo -->
         <h3 :class="{ done: todo.done }" @click="toggleDone(todo)">
             {{ todo.content }}
         </h3>
+        <button>Remove ToDo</button>
     </li>
 </ul>
 </template>
@@ -78,6 +79,10 @@ select {
     font-family: sans-serif;
     font-size: 1em;
     margin: 0.5em;
+}
+
+.todo {
+    cursor: pointer;
 }
 
 .done {
