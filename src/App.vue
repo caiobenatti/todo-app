@@ -41,11 +41,16 @@ export default {
             todo.done = !todo.done;
         }
 
+        function removeTodo(index) {
+            todos.value.splice(index, 1);
+        }
+
         return {
             todos,
             newTodo,
             addNewTodo,
             toggleDone,
+            removeTodo,
         };
     },
 };
